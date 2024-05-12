@@ -3,3 +3,5 @@
 echo hello world #주석 달기
 echo $1 $2
 echo $#
+
+echo $*
