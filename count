@@ -1,10 +1,1 @@
-#!/bin/bash
-
-dir="$1"
-
-directory=$(ls -l "$1" | cut -c1 | grep d | wc -l)
-
-file=$(ls -l "$1" | cut -c1 | grep -v d | wc -l)
-
-echo 현재 위치 : $dir
-echo "파일 $file개, 폴더 $directory개이다."
+프로그램을 시작합니다
