@@ -6,7 +6,7 @@ PHONEBOOK="phonebook.txt"
 
 # 입력값 검증
 if [[ $# -ne 2 ]]; then
-    echo "Usage: $0 NAME PHONE"
+    echo "입력값 유효하지 않음. 2개의 인수 사용하세요."
     exit 1
 fi
 
@@ -15,7 +15,7 @@ PHONE="$2"
 
 # 전화번호 유효성 검증
 if [[ ! $PHONE =~ ^[0-9]{2,3}-[0-9]{3,4}-[0-9]{4}$ ]]; then
-    echo "Invalid phone number format. Use XXX-XXXX-XXXX."
+    echo "유효하지 않은 전화번호"
     exit 1
 fi
 
@@ -25,7 +25,7 @@ ENTRY=$(grep "^$NAME " "$PHONEBOOK")
 if [[ -n $ENTRY ]]; then
     EXISTING_PHONE=$(echo "$ENTRY" | awk '{print $2}')
     if [[ $EXISTING_PHONE == "$PHONE" ]]; then
-        echo "The phone number for $NAME is already up to date."
+        echo "이미 있는 전화번호입니다."
         exit 0
     fi
 fi
@@ -49,7 +49,7 @@ case $AREA_CODE in
         AREA="대구"
         ;;
     *)
-        echo "Unknown area code: $AREA_CODE"
+        echo "정의되지 않은 지역번호: $AREA_CODE"
         exit 1
         ;;
 esac
@@ -58,4 +58,4 @@ esac
 echo "$NAME $PHONE $AREA" >> "$PHONEBOOK"
 sort -k 1,1 -o "$PHONEBOOK" "$PHONEBOOK"
 
-echo "Added/updated entry: $NAME $PHONE $AREA"
+echo "추가됨 : $NAME $PHONE $AREA"
